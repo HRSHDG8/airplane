@@ -57,6 +57,7 @@ public class AirplaneTest {
   @Test
   public void startPlaneWhenEngineIsRunning() {
     doReturn(true).when(engine).isRunning();
+    //notice how we can test exceptions using assertJ
     assertThatThrownBy(() -> airplane.start())
        .isInstanceOf(RuntimeException.class);
   }
