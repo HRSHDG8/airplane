@@ -9,6 +9,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import java.util.*;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.Mockito.doReturn;
@@ -20,7 +22,7 @@ import static org.mockito.Mockito.doReturn;
 public class AirplaneTest {
 
   /**
-   *  The class under test in this case, Airplane, is always annotated with @InjectMocks
+   * The class under test in this case, Airplane, is always annotated with @InjectMocks
    */
   @InjectMocks
   private Airplane airplane;
@@ -37,13 +39,10 @@ public class AirplaneTest {
   /**
    * Any test function is always "public void <testScenarioName>()"
    * and annotated with @Test
-   *
    * the general syntax for mocking is
    * do<action>().when(<mockobject>).functionCall()
    * eg: doReturn(true).when(engine).isRunning();
-   *
    * notice below you can chain multiple doReturn() to return different values if a function is called multiple times in same function
-   *
    */
   @Test
   public void startPlaneSuccessfully() throws Exception {
@@ -64,7 +63,7 @@ public class AirplaneTest {
 
   @Test
   public void takeOffTheAirplane() {
-    WheelStatus wheelStatus = new WheelStatus(true, true);
+    WheelStatus wheelStatus = new WheelStatus(true, true); //test doubles
     doReturn(wheelStatus).when(wheel).getWheelStatus();
     assertThat(airplane.takeOff()).isEqualTo(wheelStatus);
   }
@@ -75,5 +74,7 @@ public class AirplaneTest {
     doReturn(wheelStatus).when(wheel).getWheelStatus();
     assertThat(airplane.land()).isEqualTo(wheelStatus);
   }
+  
+  
 
 }
